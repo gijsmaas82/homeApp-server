@@ -1,0 +1,18 @@
+const { Router } = require('express')
+const ToDo = require('./model')
+
+const router = new Router()
+
+router.get('/todolist', (req, res, next) => {
+  ToDo.findAll()
+    .then(todolist => res.json(todolist))
+    .catch(err => next(err))
+})
+
+router.post('/todolist', (req, res, next) => {
+  ToDo.create(req.body)
+    .then(todo => res.json(todo))
+    .catch(next)
+})
+
+module.exports = router
