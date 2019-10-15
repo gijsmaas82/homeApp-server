@@ -1,9 +1,10 @@
 const { Router } = require('express')
 const ToDo = require('./model')
+const auth = require('../auth/middleware')
 
 const router = new Router()
 
-router.get('/todolist', (req, res, next) => {
+router.get('/todolist', auth, (req, res, next) => {
   ToDo.findAll()
     .then(todolist => res.json(todolist))
     .catch(err => next(err))
