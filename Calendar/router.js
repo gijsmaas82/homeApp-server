@@ -21,4 +21,14 @@ router.get('/event/:year/:month/:day', (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.delete('/event/:id', (req, res, next) => {
+  Event.destroy({ where: { id: req.params.id }})
+    .then(res.status(204)
+    .send('Event removed'))
+    .catch(err => next(err))
+})
+  
+
+
+
 module.exports = router
