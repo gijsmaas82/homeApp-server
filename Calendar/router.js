@@ -9,8 +9,14 @@ router.post('/event', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.get('/event', (req, res, next) => {
-  Event.findAll()
+router.get('/event/:year/:month/:day', (req, res, next) => {
+  const eventDate = new Date(
+    parseInt(req.params.year),
+    parseInt(req.params.month) - 1,
+    parseInt(req.params.day),
+    0, 0, 0, 0
+  )
+  Event.findAll({ where: { date: eventDate } })
     .then(events => res.json(events))
     .catch(err => next(err))
 })

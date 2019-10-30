@@ -10,10 +10,10 @@ const Event = db.define('event', {
     type: Sequelize.DATEONLY
   },
   startTime: {
-    type: Sequelize.DATE
+    type: Sequelize.STRING
   },
   endTime: {
-    type: Sequelize.DATE
+    type: Sequelize.STRING
   },
   description: {
     type: Sequelize.STRING
