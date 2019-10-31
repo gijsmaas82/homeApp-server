@@ -1,6 +1,6 @@
 # Home Project
 
-This is an ongoing project for home use and under constant construction. It is the backend for my personal home app. Check out the readme and the deployed website here [Home App Client] (https://github.com/gijsmaas82/homeApp-client)
+This is an ongoing project for home use and under constant construction. It is the backend for my personal home app. Check out the readme and the deployed website here [Home App Client](https://github.com/gijsmaas82/homeApp-client)
 
 
 ### Features
