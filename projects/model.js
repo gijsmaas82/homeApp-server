@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const { db } = require('../db')
 
-const Personal = db.define('personal', {
+const Project = db.define('project', {
   name: {
     type: Sequelize.STRING, allowNull: false
   },
@@ -22,4 +22,4 @@ const Personal = db.define('personal', {
   },
 })
 
-module.exports = Personal
+module.exports = Project

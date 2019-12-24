@@ -9,4 +9,10 @@ router.post('/personal', (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.get('/personal', (req, res, next) => {
+  Personal.findAll()
+  .then(personal => res.json(personal))
+  .catch(err => next(err))
+})
+
 module.exports = router
