@@ -14,7 +14,7 @@ const { checkSuperAdmin } = require("./auth/superAdmin")
 const corsMiddleware = cors()
 app.use(corsMiddleware)
 
-const parserMiddleware = bodyParser.json()
+const parserMiddleware = bodyParser.json({ limit: '50mb' })
 app.use(parserMiddleware)
 
 app.use(toDoRouter, userRouter, login, eventRouter, personalRouter, projectRouter)

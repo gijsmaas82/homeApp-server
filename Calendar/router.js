@@ -1,3 +1,5 @@
+const request = require('superagent')
+
 const { Router } = require('express')
 const Event = require('./model')
 
