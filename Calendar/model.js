@@ -19,7 +19,7 @@ const Event = db.define('event', {
     type: Sequelize.STRING
   },
   picture: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT('long')
   }
 })
 
