@@ -6,6 +6,7 @@ const userRouter = require('./User/router')
 const eventRouter = require('./Calendar/router')
 const personalRouter = require('./personal/router')
 const projectRouter = require('./projects/router')
+const drawingsRouter = require('./Drawings/router')
 const app = express()
 const login = require('./auth/router')
 const { databaseSync } = require("./db")
@@ -17,7 +18,13 @@ app.use(corsMiddleware)
 const parserMiddleware = bodyParser.json({ limit: '50mb' })
 app.use(parserMiddleware)
 
-app.use(toDoRouter, userRouter, login, eventRouter, personalRouter, projectRouter)
+app.use(toDoRouter, 
+  userRouter, 
+  login, 
+  eventRouter, 
+  personalRouter, 
+  projectRouter,
+  drawingsRouter)
 
 
 const port = process.env.PORT || 4000
