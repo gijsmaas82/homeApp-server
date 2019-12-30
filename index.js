@@ -7,6 +7,7 @@ const eventRouter = require('./Calendar/router')
 const personalRouter = require('./personal/router')
 const projectRouter = require('./projects/router')
 const drawingsRouter = require('./Drawings/router')
+const photosRouter = require('./Photos/router')
 const app = express()
 const login = require('./auth/router')
 const { databaseSync } = require("./db")
@@ -24,7 +25,8 @@ app.use(toDoRouter,
   eventRouter, 
   personalRouter, 
   projectRouter,
-  drawingsRouter)
+  drawingsRouter,
+  photosRouter)
 
 
 const port = process.env.PORT || 4000
