@@ -6,7 +6,7 @@ const Personal = db.define('personal', {
     type: Sequelize.STRING, allowNull: false
   },
   image: {
-    type: Sequelize.STRING, allowNull: false
+    type: Sequelize.TEXT('long'), allowNull: false
   },
   info: {
     type: Sequelize.TEXT, allowNull: false 
