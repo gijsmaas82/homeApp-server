@@ -5,8 +5,15 @@ const User = require('../User/model')
 const Photo = db.define(
   'photo',
   {
-    URL: 
-    { type: Sequelize.STRING }
+    picture: {
+      type: Sequelize.TEXT('long')
+    },
+    name: {
+      type: Sequelize.STRING
+    },
+    album: {
+      type: Sequelize.STRING
+    }
   }
 )
 

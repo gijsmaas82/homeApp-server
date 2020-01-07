@@ -10,7 +10,9 @@ async function onRegistry (req, res) {
   const user = {
     name: req.body.name,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password)
+    password: bcrypt.hashSync(req.body.password),
+    avatar: req.body.avatar,
+    description: req.body.description
   }
 
   const registeredUser = await User.create(user)

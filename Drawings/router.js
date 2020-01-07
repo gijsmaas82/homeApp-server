@@ -1,7 +1,7 @@
 const express = require('express')
 const { Router } = express
 const Drawing = require('./model')
-// const auth = require('../auth/middleware')
+const auth = require('../auth/middleware')
 
 
 const router = new Router()
@@ -9,7 +9,7 @@ const router = new Router()
 async function newDrawing (req, res) {
   const drawing = {
     URL: req.body.URL,
-    // userId: req.user.id
+    userId: req.user.id
   }
 
   const newDrawing = await Drawing.create(drawing)
@@ -17,16 +17,16 @@ async function newDrawing (req, res) {
   return res.send(newDrawing)
 }
 
-// router.post('/drawing', auth, newDrawing)
-router.post('/drawing', newDrawing)
+router.post('/drawing', auth, newDrawing)
 
 async function getDrawings (req, res) {
-  const drawings = await Drawing.findAll()
+  const drawings = await Drawing.findAll({ 
+    where: { userId: req.user.id }
+  })
 
   return res.send(drawings)
 }
 
-// // router.get('/drawing', auth, getDrawings)
-router.get('/drawing', getDrawings)
+router.get('/drawing', auth, getDrawings)
 
 module.exports = router

@@ -1,15 +1,17 @@
 const express = require('express')
 const { Router } = express
 const Photo= require('./model')
-// const auth = require('../auth/middleware')
+const auth = require('../auth/middleware')
 
 
 const router = new Router()
 
 async function newPhoto (req, res) {
   const photo = {
-    URL: req.body.URL,
-    // userId: req.user.id
+    picture: req.body.picture,
+    name: req.body.name,
+    album: req.body.album,
+    userId: req.user.id
   }
 
   const newPhoto = await Photo.create(photo)
@@ -17,16 +19,14 @@ async function newPhoto (req, res) {
   return res.send(newPhoto)
 }
 
-// router.post('/drawing', auth, newDrawing)
-router.post('/photo', newPhoto)
+router.post('/photo', auth, newPhoto)
 
 async function getPhotos (req, res) {
-  const photos = await Photo.findAll()
+  const photos = await Photo.findAll({ where: { userId: req.user.id }})
 
   return res.send(photos)
 }
 
-// // router.get('/drawing', auth, getDrawings)
-router.get('/photo', getPhotos)
+router.get('/photo', auth, getPhotos)
 
 module.exports = router

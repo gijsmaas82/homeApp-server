@@ -12,6 +12,8 @@ const checkSuperAdmin = async () => {
     defaults: {
       name: "Super Admin",
       password: encryptedPassword,
+      rank: 2,
+      description: 'Super user'
     }
   })
 }

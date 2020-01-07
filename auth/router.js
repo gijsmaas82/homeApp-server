@@ -31,7 +31,10 @@ router.post(
     if (bcrypt.compareSync(req.body.password, entity.password)) {
       res.send({ 
         jwt: toJWT({ userId: entity.id }),
-        userName: entity.name
+        userName: entity.name,
+        avatar: entity.avatar,
+        description: entity.description
+
       })
     }else {
         res.status(400).send({ 

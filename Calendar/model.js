@@ -7,7 +7,7 @@ const Event = db.define('event', {
     type: Sequelize.STRING, allowNull: false
   },
   date: {
-    type: Sequelize.DATEONLY
+    type: Sequelize.DATEONLY, allowNull: false
   },
   startTime: {
     type: Sequelize.STRING
@@ -16,7 +16,7 @@ const Event = db.define('event', {
     type: Sequelize.STRING
   },
   description: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING, allowNull: false
   },
   picture: {
     type: Sequelize.TEXT('long')

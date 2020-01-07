@@ -5,9 +5,24 @@ const ToDo = require('../toDoList/model')
 const User = db.define(
   'user',
   {
-    name: Sequelize.STRING,
-    email: Sequelize.STRING,
-    password: Sequelize.STRING,
+    name: {
+      type: Sequelize.STRING, allowNull: false
+    },
+    email: {
+      type: Sequelize.STRING, allowNull: false
+    },
+    password: {
+      type: Sequelize.STRING, allowNull: false
+    },
+    avatar: {
+      type: Sequelize.TEXT('long')
+    },
+    rank: {
+      type: Sequelize.INTEGER, defaultValue: 0
+    },
+    description: {
+      type: Sequelize.TEXT
+    }
   }
 )
 
