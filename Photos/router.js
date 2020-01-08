@@ -22,11 +22,49 @@ async function newPhoto (req, res) {
 router.post('/photo', auth, newPhoto)
 
 async function getPhotos (req, res) {
-  const photos = await Photo.findAll({ where: { userId: req.user.id }})
-
-  return res.send(photos)
+  if (!req.headers.album) {
+    const allPhotos = await Photo.findAndCountAll({ 
+      limit: 10, 
+      offset: (req.headers.page - 1)*10, 
+      where: { userId: req.user.id }
+    })
+    
+    return res.send(allPhotos)
+  } else {
+    const albumPhotos = await Photo.findAndCountAll({ 
+      limit: 10,
+      offset: req.headers.page * 10 -10, 
+      where: {userId: req.user.id, album: req.headers.album }})
+    return res.send(albumPhotos)
+  }
 }
 
 router.get('/photo', auth, getPhotos)
+
+async function getAlbums (req, res) {
+  const photos = await Photo.findAll({ where: { userId: req.user.id }})
+  const albums = photos.reduce((albumList, photo) => {
+    if (photo.album !== null) {
+      const uniqueAlbum = albumList.albums.find(album => album === photo.album)
+      if (!uniqueAlbum) {
+        albumList.albums.push(photo.album)
+      }
+      return albumList
+    }
+    return albumList
+  }, { 
+    albums: []
+  })
+  return res.send(albums.albums)
+}
+
+router.get('/photoalbums', auth, getAlbums)
+
+router.delete('/photo/:id', auth, (req, res, next) => {
+  Photo.destroy({ where: { id: req.params.id }})
+    .then(res.status(204)
+    .send('Event removed'))
+    .catch(err => next(err))
+})
 
 module.exports = router
