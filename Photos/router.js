@@ -31,7 +31,6 @@ async function getPhotos (req, res) {
     
     return res.send(allPhotos)
   } else {
-    console.log('page:', req.headers)
     const albumPhotos = await Photo.findAndCountAll({ 
       limit: 10,
       offset: req.headers.page * 10 -10, 
@@ -60,5 +59,12 @@ async function getAlbums (req, res) {
 }
 
 router.get('/photoalbums', auth, getAlbums)
+
+router.delete('/photo/:id', auth, (req, res, next) => {
+  Photo.destroy({ where: { id: req.params.id }})
+    .then(res.status(204)
+    .send('Event removed'))
+    .catch(err => next(err))
+})
 
 module.exports = router
